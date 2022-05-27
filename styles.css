@@ -1,0 +1,245 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap");
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primary-color: #2be98a;
+  --secondary-color: #ff394d;
+  --primary-gradient: linear-gradient(to right, #c5329b, #ff394d);
+  --background-gradient: linear-gradient(to right, #252526, #3c3c3c);
+  --white: #dedede;
+  --black: #252526;
+  --box-shadow: -9px -6px 11px 2px #22222269;
+}
+
+body {
+  display: grid;
+  line-height: 1.5;
+  grid-template-columns: 1fr repeat(8, 9rem) 1fr;
+  grid-template-rows: 90vh repeat(6, min-content);
+  font-family: "Roboto", sans-serif;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+  font-size: inherit;
+}
+nav {
+  width: 100%;
+  height: 3.3rem;
+  background: var(--black);
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--white);
+  padding: 0 4rem;
+}
+
+nav .links {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+}
+nav .links a {
+  padding: 1rem 0.6rem;
+  align-self: stretch;
+  font-size: 0.9rem;
+}
+nav .links a:hover,
+nav .links a.active {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+header {
+  background-blend-mode: multiply, multiply, multiply, multiply, normal;
+  background-position: top right, top left, bottom left, bottom right, 100%;
+  background-repeat: no-repeat;
+  background-size: 70% 25%, 70% 45%, 70% 25%, 110% 85%, 100%;
+  background: var(--black);
+  background: var(--background-gradient);
+  border-bottom-right-radius: 2% 2%;
+  border-bottom-left-radius: 2% 2%;
+  position: relative;
+  overflow: hidden;
+  padding: 1rem;
+  z-index: 1;
+  color: var(--white);
+  grid-column: 1 / -1;
+
+  display: grid;
+  grid-template-columns: 1fr repeat(8, 9rem) 1fr;
+}
+
+header::after {
+  content: "";
+  background: hsla(0, 0%, 100%, 0.1);
+  height: 140%;
+  width: 90%;
+  position: absolute;
+  transform: skew(-25deg) translate(-20rem, -10rem);
+  z-index: -1;
+}
+.content {
+  grid-column: 2 / 6;
+  margin: 8rem 0;
+}
+
+.image {
+  grid-column: 6 / 10;
+}
+
+.image img {
+  transform: translate(2rem, 10rem);
+  box-shadow: var(--box-shadow);
+}
+.name {
+  font-family: "Alfa Slab One", cursive;
+  font-size: 3.5rem;
+  line-height: 0.8;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  background: var(--secondary-color);
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.name-title {
+  letter-spacing: 0.34rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0.2rem;
+}
+.self-description {
+  margin: 1.8rem 0;
+  font-weight: 500;
+  text-align: justify;
+}
+.hire-me {
+  padding: 0.6rem 1rem;
+  border: 0;
+  outline: 0;
+  background: var(--secondary-color);
+  background: var(--primary-gradient);
+  border-radius: 0.2rem;
+  color: var(--white);
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  font-size: 1.2rem;
+  transition: all 0.5s;
+  width: 8rem;
+}
+
+.hire-me span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.hire-me span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.hire-me:hover span {
+  padding-right: 25px;
+}
+
+.hire-me:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.logos {
+  margin: 7rem 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 2rem;
+  row-gap: 4rem;
+  align-items: center;
+  justify-content: center;
+}
+.logos img {
+  width: 60%;
+  align-self: center;
+  justify-self: baseline;
+  transition: transform 0.4s ease;
+  cursor: pointer;
+}
+.logos img:hover {
+  transform: scale(1.2);
+}
+
+.about {
+  grid-column: 2 / -2;
+  margin: 2rem 0;
+  padding: 3rem 0;
+  display: grid;
+  grid-template-columns: 1fr repeat(8, 9rem) 1fr;
+}
+.about-content {
+  grid-column: 2 / 7;
+  padding: 0 3rem 0 0;
+  text-align: justify;
+}
+.about-me-title {
+  margin-bottom: 1rem;
+}
+
+.about img {
+  grid-column: 7 / -2;
+  width: 100%;
+  border-radius: 2rem;
+}
+.connections {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.connections a {
+  transition: transform 0.4s ease;
+}
+.connections a:hover {
+  transform: scale(1.3);
+}
+.connections svg {
+  width: 2rem;
+}
+
+.projects {
+  background: lightcoral;
+  grid-column: 2 / -2;
+}
+.contacts {
+  background: lightsalmon;
+  grid-column: 2 / -2;
+}
+.blogs {
+  background: lightgreen;
+  grid-column: 2 / -2;
+}
+footer {
+  background: hotpink;
+  grid-column: 1 / -1;
+}

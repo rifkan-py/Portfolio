@@ -7,22 +7,21 @@
     <title>Rifkan | Portfolio</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body>
+  <body class="scrollspy">
     <nav>
       <h3 class="logo">
         <span style="color: #2be98a">&lt;</span
         ><span style="color: #ff394d">Rifkan-py</span>
         <span style="color: #2be98a">/&gt;</span>
       </h3>
-      <div class="links">
-        <a href="#" class="active">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#blogs">Blogs</a>
-        <a href="#contacts">Contacts</a>
+      <div class="links" id="links">
+        <a href="#" class="active" data-scrollspy="#home">Home</a>
+        <a href="#about" data-scrollspy="#about">About</a>
+        <a href="#projects" data-scrollspy="#projects">Projects</a>
+        <a href="#contacts" data-scrollspy="#contacts">Contacts</a>
       </div>
     </nav>
-    <header>
+    <header class="section" id="section">
       <div class="content">
         <h1 class="name">Mohamed Rifkan</h1>
         <span class="name-title"
@@ -56,7 +55,7 @@
         <img src="./images/program.png" alt="coding board" />
       </div>
     </header>
-    <section class="about" id="about">
+    <section class="about section" id="about">
       <div class="about-content">
         <h1 class="about-me-title">About Me</h1>
         <p>
@@ -101,7 +100,7 @@
       </div>
       <img src="./images/mypic.jpg" alt="Mohamed Rifkan" />
     </section>
-    <section class="projects" id="projects">
+    <section class="projects section" id="projects">
       <h1>Projects</h1>
       <div class="project">Project might not avileble at the moment</div>
       <div class="project">Project might not avileble at the moment</div>
@@ -110,10 +109,7 @@
       <div class="project">Project might not avileble at the moment</div>
       <div class="project">Project might not avileble at the moment</div>
     </section>
-    <section class="blogs" id="blogs">
-      <h1>Blogs</h1>
-    </section>
-    <section class="contacts" id="contacts">
+    <section class="contacts section" id="contacts">
       <div class="contact-container">
         <div class="contact-links">
           <span class="media-title">Almost every platform 😎</span>
@@ -189,10 +185,17 @@
         </div>
       </div>
     </section>
-    <footer>
+    <footer class="footer">
       <span> © All rights reserved. </span>
       <span>Powerd by Mohamed Rifkan</span>
     </footer>
-    <script src="./index.js"></script>
+    <script src="./index.js" type="module"></script>
   </body>
 </html>
+
+<!-- 
+
+  1. Responsiveness
+  2. scrollspy
+
+ -->

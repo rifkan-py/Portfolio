@@ -366,13 +366,6 @@ header::after {
   fill: #fff;
   width: 2rem;
 }
-.blogs {
-  min-height: 100vh;
-  height: auto;
-  grid-column: 2 / -2;
-  height: auto;
-  padding: 5rem 0;
-}
 footer {
   background: var(--black);
   color: #949494;

@@ -1,5 +1,10 @@
 const links = [...document.querySelectorAll(".links a")];
 const sections = [...document.querySelectorAll(".section")];
+window.location.hash
+  ? document
+      .querySelector(`a[href*='${window.location.hash}']`)
+      .classList.add("active")
+  : links[0].classList.add("active");
 
 window.onscroll = () => {
   sections.forEach((sec) => {
@@ -13,8 +18,10 @@ window.onscroll = () => {
         link.classList.remove("active");
         document
           .querySelector(`.links a[href*='${id}']`)
-          ?.classList.add("active");
+          .classList.add("active");
       });
     }
   });
 };
+
+console.log();

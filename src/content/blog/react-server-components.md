@@ -65,4 +65,4 @@ As frameworks like Next.js 14+ make RSCs the default, I expect we'll see a new g
 
 ---
 
-*What are your thoughts on React Server Components? Are you already using them in production? Let me know on [LinkedIn](https://linkedin.com/in/rifkan).*
+*What are your thoughts on React Server Components? Are you already using them in production? Let me know on [LinkedIn](https://www.linkedin.com/in/mohamed-rifkan-b38218214).*

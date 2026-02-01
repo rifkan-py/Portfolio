@@ -170,4 +170,4 @@ The animated aurora background on this site uses several of these techniques:
 
 WebGL performance optimization is an ongoing journey. Start with measurement, optimize the biggest bottlenecks first, and always test on real devices.
 
-*Working on a WebGL project? I'd love to hear about your performance challenges. Connect with me on [LinkedIn](https://linkedin.com/in/rifkan).*
+*Working on a WebGL project? I'd love to hear about your performance challenges. Connect with me on [LinkedIn](https://www.linkedin.com/in/mohamed-rifkan-b38218214).*

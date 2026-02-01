@@ -1,0 +1,220 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const blogs = await getCollection('blog');
+  return blogs.map((blog) => ({
+    params: { slug: blog.slug },
+    props: { blog },
+  }));
+}
+
+const { blog } = Astro.props;
+const { Content } = await render(blog);
+
+const formattedDate = blog.data.date.toLocaleDateString('en-US', { 
+  year: 'numeric', 
+  month: 'long', 
+  day: 'numeric' 
+});
+---
+
+<Layout 
+  title={`${blog.data.title} | Mohamed Rifkan`}
+  description={blog.data.description}
+  keywords={`${blog.data.category}, Blog, Mohamed Rifkan, Development`}
+>
+  <main class="w-full min-h-screen flex flex-col items-center justify-start px-6 py-20">
+    <article class="max-w-3xl w-full">
+      
+      <!-- Back Link -->
+      <a href="/blogs" class="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 group">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-x-1 transition-transform">
+          <path d="m12 19-7-7 7-7"/>
+          <path d="M19 12H5"/>
+        </svg>
+        Back to Blogs
+      </a>
+
+      <!-- Header -->
+      <header class="mb-12">
+        <div class="flex items-center gap-3 text-sm text-muted-foreground mb-4">
+          <span class="text-2xl">{blog.data.emoji}</span>
+          <span>{formattedDate}</span>
+          <span class="w-1 h-1 rounded-full bg-muted-foreground"></span>
+          <span class="px-2 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">{blog.data.category}</span>
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold geist-font text-foreground mb-4 leading-tight">
+          {blog.data.title}
+        </h1>
+        <p class="text-lg text-muted-foreground inter-font leading-relaxed">
+          {blog.data.description}
+        </p>
+      </header>
+
+      <div class="divider mb-12"></div>
+
+      <!-- Content -->
+      <div class="prose prose-invert prose-lg max-w-none">
+        <Content />
+      </div>
+
+      <div class="divider my-12"></div>
+
+      <!-- Footer -->
+      <footer class="flex flex-col sm:flex-row justify-between items-center gap-6">
+        <a href="/blogs" class="glass-button px-6 py-3 rounded-lg text-sm font-medium text-foreground flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m12 19-7-7 7-7"/>
+            <path d="M19 12H5"/>
+          </svg>
+          More Articles
+        </a>
+        <div class="flex items-center gap-4">
+          <span class="text-muted-foreground text-sm">Share:</span>
+          <a 
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(blog.data.title)}&url=${encodeURIComponent(`https://rifkan.de/blog/${blog.slug}`)}`}
+            target="_blank"
+            class="text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="Share on Twitter"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a 
+            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://rifkan.de/blog/${blog.slug}`)}`}
+            target="_blank"
+            class="text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="Share on LinkedIn"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect width="4" height="12" x="2" y="9"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+        </div>
+      </footer>
+
+    </article>
+  </main>
+</Layout>
+
+<style is:global>
+  /* Prose styling for blog content */
+  .prose {
+    color: hsl(var(--foreground));
+  }
+  
+  .prose h2 {
+    color: hsl(var(--foreground));
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  
+  .prose h3 {
+    color: hsl(var(--foreground));
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .prose p {
+    color: hsl(var(--muted-foreground));
+    margin-bottom: 1.25rem;
+    line-height: 1.8;
+  }
+  
+  .prose a {
+    color: hsl(var(--primary));
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  
+  .prose a:hover {
+    opacity: 0.8;
+  }
+  
+  .prose strong {
+    color: hsl(var(--foreground));
+    font-weight: 600;
+  }
+  
+  .prose ul, .prose ol {
+    color: hsl(var(--muted-foreground));
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  
+  .prose li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .prose code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    color: hsl(var(--foreground));
+  }
+  
+  .prose pre {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+  
+  .prose pre code {
+    background: transparent;
+    padding: 0;
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+  
+  .prose blockquote {
+    border-left: 3px solid hsl(var(--primary));
+    padding-left: 1rem;
+    margin-left: 0;
+    margin-bottom: 1.25rem;
+    font-style: italic;
+    color: hsl(var(--muted-foreground));
+  }
+  
+  .prose hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    margin: 2rem 0;
+  }
+  
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+  }
+  
+  .prose th, .prose td {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 1rem;
+    text-align: left;
+  }
+  
+  .prose th {
+    background: rgba(255, 255, 255, 0.05);
+    color: hsl(var(--foreground));
+    font-weight: 600;
+  }
+  
+  .prose td {
+    color: hsl(var(--muted-foreground));
+  }
+</style>

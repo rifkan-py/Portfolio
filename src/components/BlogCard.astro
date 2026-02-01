@@ -1,0 +1,38 @@
+---
+interface Props {
+  emoji: string;
+  date: string;
+  category: string;
+  title: string;
+  description: string;
+  slug: string;
+}
+
+const { emoji, date, category, title, description, slug } = Astro.props;
+---
+
+<article class="glass-card rounded-2xl p-6 transition-all hover:scale-[1.01] cursor-pointer group">
+  <a href={slug} class="flex flex-col md:flex-row gap-6 items-start no-underline">
+    <div class="w-full md:w-1/3 aspect-video bg-white/5 rounded-xl flex items-center justify-center text-4xl">
+      {emoji}
+    </div>
+    <div class="flex-1">
+      <div class="flex items-center gap-3 text-xs text-muted-foreground mb-2">
+        <span>{date}</span>
+        <span class="w-1 h-1 rounded-full bg-muted-foreground"></span>
+        <span>{category}</span>
+      </div>
+      <h2 class="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">{title}</h2>
+      <p class="text-muted-foreground text-sm leading-relaxed mb-4">
+        {description}
+      </p>
+      <span class="text-primary text-sm font-medium flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+        Read more 
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/>
+          <path d="m12 5 7 7-7 7"/>
+        </svg>
+      </span>
+    </div>
+  </a>
+</article>

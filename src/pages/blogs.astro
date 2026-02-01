@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BlogCard from '../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+// Get all blog posts, sorted by date (newest first)
+const blogs = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout 
+  title="Blogs | Mohamed Rifkan"
+  description="Technical blogs and insights by Mohamed Rifkan."
+  keywords="Blog, Tech, Development, Thoughts, Coding"
+>
+  <main class="w-full min-h-screen flex flex-col items-center justify-start px-6 py-20">
+    <div class="max-w-4xl w-full">
+      
+      <div class="mb-12 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold geist-font text-foreground mb-4">Thoughts & Writings</h1>
+        <p class="text-muted-foreground inter-font text-lg">Exploring technology, design, and everything in between.</p>
+      </div>
+
+      <!-- Blog List -->
+      <div class="space-y-6">
+        {blogs.map((blog) => (
+          <BlogCard 
+            emoji={blog.data.emoji}
+            date={blog.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            category={blog.data.category}
+            title={blog.data.title}
+            description={blog.data.description}
+            slug={`/blog/${blog.slug}`}
+          />
+        ))}
+      </div>
+    </div>
+  </main>
+</Layout>

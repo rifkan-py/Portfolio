@@ -28,16 +28,13 @@ const currentPath = Astro.url.pathname;
   <meta name="keywords" content={keywords}>
   <meta name="author" content="Mohamed Rifkan">
   <title>{title}</title>
-  
-  <!-- Three.js from CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
-<body class="bg-background text-foreground geist-font min-h-screen">
+<body class="text-foreground geist-font min-h-screen relative overflow-x-hidden">
   
   <!-- Aurora Background Container -->
   <AuroraBackground />
   
-  <div class="relative z-10">
+  <div class="relative z-10 flex min-h-screen flex-col w-full max-w-full overflow-x-hidden">
     <!-- Navigation -->
     <Navigation currentPath={currentPath} />
     

@@ -110,4 +110,4 @@ const theme = userPreference ?? (prefersDark ? 'dark' : 'light');
 
 Dark mode done right creates an elegant, comfortable experience that users will appreciate, especially during those late-night coding sessions.
 
-*Building a dark mode interface? I'd love to see it! Share your work with me on [LinkedIn](https://linkedin.com/in/rifkan).*
+*Building a dark mode interface? I'd love to see it! Share your work with me on [LinkedIn](https://www.linkedin.com/in/mohamed-rifkan-b38218214).*

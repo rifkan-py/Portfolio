@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = [
+  {
+    icon: '🛍️',
+    title: 'E-commerce Platform',
+    description: 'A scalable online store built with Next.js, TypeScript, and Stripe payment integration.',
+    tags: ['Next.js', 'Stripe', 'Vercel']
+  },
+  {
+    icon: '📊',
+    title: 'SaaS Dashboard',
+    description: 'A real-time analytics dashboard for a B2B software-as-a-service product.',
+    tags: ['React', 'Chart.js', 'Firebase']
+  },
+  {
+    icon: '🤖',
+    title: 'AI Content Generator',
+    description: 'Leveraging OpenAI to generate marketing copy for businesses automatically.',
+    tags: ['SvelteKit', 'OpenAI', 'Tailwind CSS']
+  }
+];
+---
+
+<Layout 
+  title="Mohamed Rifkan | Portfolio"
+  description="Portfolio of Mohamed Rifkan, showcasing projects and skills."
+  keywords="Mohamed Rifkan, Portfolio, Developer, Software Engineer, Projects"
+>
+  <main id="about" class="w-full min-h-screen flex flex-col items-center justify-center px-6 py-20">
+    <div class="max-w-6xl mx-auto text-center">
+      
+      <!-- Hero Section -->
+      <div class="mb-8 float-animation">
+        <h1 class="md:text-6xl lg:text-7xl leading-tight md:leading-snug geist-font text-5xl font-light text-foreground tracking-tight mb-4 py-2">
+          Full-Stack Engineer &
+          <span class="gradient-text block tracking-tight pb-2">UI/UX Designer</span>
+        </h1>
+        <p class="md:text-xl max-w-3xl leading-relaxed inter-font text-lg font-light text-muted-foreground mx-auto">
+          I build robust, scalable web applications with a strong focus on user-centric design and performance.
+        </p>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+        <button 
+          onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })" 
+          class="primary-button px-6 py-3 text-secondary rounded-lg font-medium text-sm min-w-[160px] cursor-pointer"
+        >
+          Explore My Work
+        </button>
+        <a 
+          href="mailto:me@rifkan.de" 
+          class="glass-button min-w-[160px] inter-font text-sm font-medium text-foreground rounded-lg px-6 py-3 cursor-pointer text-center"
+        >
+          Contact Me
+        </a>
+      </div>
+
+      <div class="divider mb-16"></div>
+
+      <!-- Projects Grid -->
+      <div id="projects" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
+        {projects.map((project) => (
+          <ProjectCard {...project} />
+        ))}
+      </div>
+
+      <div class="divider mb-16"></div>
+
+      <!-- Stats/Skills -->
+      <div id="skills" class="flex flex-col sm:flex-row justify-center items-center gap-8 text-center">
+        
+        <div>
+          <div class="text-3xl md:text-4xl font-light text-foreground mb-1 geist-font tracking-tight">7+</div>
+          <div class="text-muted-foreground text-sm inter-font font-normal">Years of Experience</div>
+        </div>
+        <div class="hidden sm:block w-px h-12 bg-gradient-to-b from-transparent via-input to-transparent"></div>
+
+        <div>
+          <div class="text-3xl md:text-4xl font-light text-foreground mb-1 geist-font tracking-tight">30+</div>
+          <div class="text-muted-foreground text-sm inter-font font-normal">Client Projects</div>
+        </div>
+        <div class="hidden sm:block w-px h-12 bg-gradient-to-b from-transparent via-input to-transparent"></div>
+
+        <div>
+          <div class="text-3xl md:text-4xl font-light text-foreground mb-1 geist-font tracking-tight">99%</div>
+          <div class="text-muted-foreground text-sm inter-font font-normal">Client Satisfaction</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</Layout>

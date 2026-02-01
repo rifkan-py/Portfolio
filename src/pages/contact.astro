@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Contact | Mohamed Rifkan"
+  description="Contact Mohamed Rifkan - Get in touch for collaboration or inquiries."
+  keywords="Contact, Mohamed Rifkan, Hire Developer, Software Engineer"
+>
+  <main class="w-full min-h-screen flex flex-col items-center justify-start px-6 py-20">
+    <div class="max-w-xl w-full text-center">
+      
+      <div class="mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold geist-font text-foreground mb-4">Let's Connect</h1>
+        <p class="text-muted-foreground inter-font text-lg">Feel free to reach out for collaborations or just a friendly hello.</p>
+      </div>
+
+      <div class="glass-card rounded-2xl p-8 flex flex-col items-center space-y-8">
+        
+        <!-- Email Section -->
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-4 text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="16" x="2" y="4" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-medium text-foreground mb-2">Email Me</h3>
+          <a href="mailto:me@rifkan.de" class="text-xl md:text-2xl font-bold text-foreground hover:text-primary transition-colors cursor-pointer">me@rifkan.de</a>
+        </div>
+
+        <div class="w-full h-px bg-white/5"></div>
+
+        <!-- Phone & WhatsApp Section -->
+        <div class="flex flex-col md:flex-row gap-8 w-full justify-around items-center">
+          <!-- Phone -->
+          <div class="text-center">
+            <div class="w-12 h-12 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-3 text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
+            <h3 class="text-base font-medium text-foreground mb-1">Phone</h3>
+            <a href="tel:+94761904696" class="text-lg font-semibold text-foreground hover:text-primary transition-colors">+94 76 190 4696</a>
+          </div>
+          
+          <!-- WhatsApp -->
+          <div class="text-center">
+            <div class="w-12 h-12 mx-auto bg-green-500/10 rounded-full flex items-center justify-center mb-3 text-green-500">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+                <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
+              </svg>
+            </div>
+            <h3 class="text-base font-medium text-foreground mb-1">WhatsApp</h3>
+            <a href="https://wa.me/94761904696" target="_blank" class="text-lg font-semibold text-foreground hover:text-green-500 transition-colors">Chat on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="w-full h-px bg-white/5"></div>
+
+        <!-- LinkedIn Section -->
+        <div class="text-center w-full">
+          <p class="text-muted-foreground mb-6 text-sm">Connect with me on LinkedIn for updates and professional networking.</p>
+          <a 
+            href="https://linkedin.com/in/rifkan" 
+            target="_blank" 
+            class="inline-flex items-center justify-center gap-2 px-8 py-3 bg-[#0A66C2] hover:bg-[#004182] text-white rounded-full font-medium transition-all hover:scale-105 shadow-lg shadow-blue-900/20 w-auto cursor-pointer"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect width="4" height="12" x="2" y="9"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+            <span>Follow on LinkedIn</span>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="mt-12 flex justify-center space-x-8">
+        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">LinkedIn</a>
+        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">GitHub</a>
+        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">Twitter</a>
+      </div>
+
+    </div>
+  </main>
+</Layout>

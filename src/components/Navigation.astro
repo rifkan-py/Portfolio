@@ -1,0 +1,66 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const isActive = (path: string) => {
+  if (path === '/' || path === '/index') {
+    return currentPath === '/' || currentPath === '/index' || currentPath === '';
+  }
+  return currentPath.includes(path);
+};
+---
+
+<nav class="sticky top-0 z-50 w-full px-6 py-4 backdrop-blur-md bg-background/50 border-b border-white/5">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <div class="flex items-center space-x-2">
+      <a href="/" class="flex items-center space-x-2 cursor-pointer no-underline">
+        <div class="w-8 h-8 rounded-lg bg-border/50 backdrop-blur-md border border-border flex items-center justify-center">
+          <span class="geist-font text-sm font-bold text-foreground">MR</span>
+        </div>
+        <span class="geist-font text-lg font-medium text-foreground">Mohamed Rifkan</span>
+      </a>
+    </div>
+    <div class="hidden md:flex items-center space-x-8">
+      <a 
+        href="/" 
+        class:list={[
+          "transition-colors inter-font text-sm",
+          isActive('/') ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
+        ]}
+      >
+        About
+      </a>
+      <a 
+        href="/contact" 
+        class:list={[
+          "transition-colors inter-font text-sm",
+          isActive('/contact') ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
+        ]}
+      >
+        Contact
+      </a>
+      <a 
+        href="/blogs" 
+        class:list={[
+          "transition-colors inter-font text-sm",
+          isActive('/blogs') ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
+        ]}
+      >
+        Blogs
+      </a>
+    </div>
+    <a 
+      href="mailto:me@rifkan.de" 
+      class="primary-button h-9 px-4 rounded-md text-sm font-medium transition-all hover:shadow-[0_0_15px_-3px_hsl(var(--primary)/0.4)] flex items-center gap-2 cursor-pointer"
+    >
+      <span>Get in Touch</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-90">
+        <rect width="20" height="16" x="2" y="4" rx="2"/>
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+      </svg>
+    </a>
+  </div>
+</nav>

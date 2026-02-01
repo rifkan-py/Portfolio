@@ -11,56 +11,131 @@ const isActive = (path: string) => {
   }
   return currentPath.includes(path);
 };
+
+const navLinks = [
+  { href: '/', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+  { href: '/blogs', label: 'Blogs' },
+];
 ---
 
 <nav class="sticky top-0 z-50 w-full px-6 py-4 backdrop-blur-md bg-background/50 border-b border-white/5">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
     <div class="flex items-center space-x-2">
-      <a href="/" class="flex items-center space-x-2 cursor-pointer no-underline">
-        <div class="w-8 h-8 rounded-lg bg-border/50 backdrop-blur-md border border-border flex items-center justify-center">
-          <span class="geist-font text-sm font-bold text-foreground">MR</span>
+      <a href="/" class="flex items-center gap-3 cursor-pointer no-underline group">
+        <!-- Creative Logo Icon -->
+        <div class="relative w-10 h-10 flex items-center justify-center">
+          <div class="absolute inset-0 bg-indigo-500/20 rounded-lg blur-sm group-hover:blur-md transition-all duration-300"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg rotate-3 group-hover:rotate-6 transition-transform duration-300"></div>
+          <div class="relative w-[38px] h-[38px] bg-black/80 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/10 z-10">
+            <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-purple-300 font-mono text-sm">&lt;MR/&gt;</span>
+          </div>
         </div>
-        <span class="geist-font text-lg font-medium text-foreground">Mohamed Rifkan</span>
+        
+        <!-- Text with Effect -->
+        <div class="hidden sm:flex flex-col">
+          <span class="text-sm font-bold text-white tracking-wide leading-none group-hover:text-indigo-300 transition-colors">MOHAMED</span>
+          <span class="text-[10px] font-medium text-gray-400 tracking-[0.2em] leading-tight group-hover:tracking-[0.25em] transition-all duration-300">RIFKAN</span>
+        </div>
       </a>
     </div>
+    
+    <!-- Desktop Navigation -->
     <div class="hidden md:flex items-center space-x-8">
+      {navLinks.map((link) => (
+        <a 
+          href={link.href}
+          class:list={[
+            "transition-colors inter-font text-sm",
+            isActive(link.href) ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+
+    <div class="flex items-center gap-4">
+      <!-- CTA Button - Hidden on very small screens -->
       <a 
-        href="/" 
-        class:list={[
-          "transition-colors inter-font text-sm",
-          isActive('/') ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
-        ]}
+        href="mailto:me@rifkan.de" 
+        class="primary-button h-9 px-4 rounded-md text-sm font-medium transition-all hover:shadow-[0_0_15px_-3px_hsl(var(--primary)/0.4)] hidden sm:flex items-center gap-2 cursor-pointer"
       >
-        About
+        <span>Get in Touch</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-90">
+          <rect width="20" height="16" x="2" y="4" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
       </a>
-      <a 
-        href="/contact" 
-        class:list={[
-          "transition-colors inter-font text-sm",
-          isActive('/contact') ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
-        ]}
+
+      <!-- Mobile Menu Button -->
+      <button 
+        id="mobile-menu-btn"
+        class="md:hidden glass-button p-2 rounded-lg"
+        aria-label="Toggle menu"
+        aria-expanded="false"
       >
-        Contact
-      </a>
+        <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12"/>
+          <line x1="4" x2="20" y1="6" y2="6"/>
+          <line x1="4" x2="20" y1="18" y2="18"/>
+        </svg>
+        <svg id="close-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"/>
+          <path d="m6 6 12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-white/5 pt-4">
+    <div class="flex flex-col space-y-4">
+      {navLinks.map((link) => (
+        <a 
+          href={link.href}
+          class:list={[
+            "transition-colors inter-font text-base px-2 py-2 rounded-lg",
+            isActive(link.href) ? "text-foreground font-medium bg-white/5" : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
       <a 
-        href="/blogs" 
-        class:list={[
-          "transition-colors inter-font text-sm",
-          isActive('/blogs') ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
-        ]}
+        href="mailto:me@rifkan.de" 
+        class="primary-button px-4 py-3 rounded-lg text-sm font-medium flex items-center justify-center gap-2 mt-2"
       >
-        Blogs
+        <span>Get in Touch</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-90">
+          <rect width="20" height="16" x="2" y="4" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
       </a>
     </div>
-    <a 
-      href="mailto:me@rifkan.de" 
-      class="primary-button h-9 px-4 rounded-md text-sm font-medium transition-all hover:shadow-[0_0_15px_-3px_hsl(var(--primary)/0.4)] flex items-center gap-2 cursor-pointer"
-    >
-      <span>Get in Touch</span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-90">
-        <rect width="20" height="16" x="2" y="4" rx="2"/>
-        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-      </svg>
-    </a>
   </div>
 </nav>
+
+<script>
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  mobileMenuBtn?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.toggle('hidden');
+    menuIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+    mobileMenuBtn?.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+  });
+
+  // Close menu when clicking on a link
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

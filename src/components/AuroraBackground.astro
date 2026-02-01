@@ -5,9 +5,11 @@
 <div id="three-canvas"></div>
 
 <script>
+  import * as THREE from 'three';
+
   document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('three-canvas');
-    if (!container || typeof THREE === 'undefined') return;
+    if (!container) return;
 
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);

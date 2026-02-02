@@ -31,6 +31,7 @@ const blogs = (await getCollection('blog', ({ data }) => !data.draft))
             title={blog.data.title}
             description={blog.data.description}
             slug={`/blog/${blog.slug}`}
+            image={blog.data.image}
           />
         ))}
       </div>

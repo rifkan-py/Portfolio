@@ -6,15 +6,20 @@ interface Props {
   title: string;
   description: string;
   slug: string;
+  image?: string;
 }
 
-const { emoji, date, category, title, description, slug } = Astro.props;
+const { emoji, date, category, title, description, slug, image } = Astro.props;
 ---
 
 <article class="glass-card rounded-2xl p-6 transition-all hover:scale-[1.01] cursor-pointer group">
   <a href={slug} class="flex flex-col md:flex-row gap-6 items-start no-underline">
-    <div class="w-full md:w-1/3 aspect-video bg-white/5 rounded-xl flex items-center justify-center text-4xl">
-      {emoji}
+    <div class="w-full md:w-1/3 aspect-video bg-white/5 rounded-xl flex items-center justify-center text-4xl overflow-hidden">
+      {image ? (
+        <img src={image} alt={title} class="w-full h-full object-cover" loading="lazy" />
+      ) : (
+        emoji
+      )}
     </div>
     <div class="flex-1">
       <div class="flex items-center gap-3 text-xs text-muted-foreground mb-2">

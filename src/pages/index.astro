@@ -3,29 +3,31 @@ import Layout from "../layouts/Layout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import { Image } from "astro:assets";
 
-const projects = [
-	{
-		icon: "🛍️",
-		title: "E-commerce Platform",
-		description:
-			"A scalable online store built with Next.js, TypeScript, and Stripe payment integration.",
-		tags: ["Next.js", "Stripe", "Vercel"],
-	},
-	{
-		icon: "📊",
-		title: "SaaS Dashboard",
-		description:
-			"A real-time analytics dashboard for a B2B software-as-a-service product.",
-		tags: ["React", "Chart.js", "Firebase"],
-	},
-	{
-		icon: "🤖",
-		title: "AI Content Generator",
-		description:
-			"Leveraging OpenAI to generate marketing copy for businesses automatically.",
-		tags: ["SvelteKit", "OpenAI", "Tailwind CSS"],
-	},
-];
+const GITHUB_USERNAME = "rifkan-py";
+
+interface Repository {
+  name: string;
+  description: string;
+  html_url: string;
+  stargazers_count: number;
+  forks_count: number;
+  language: string;
+  fork: boolean;
+}
+
+let projects: Repository[] = [];
+try {
+  const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`);
+  const repos = await response.json();
+  if (Array.isArray(repos)) {
+      projects = repos
+          .filter((repo: Repository) => !repo.fork && repo.description)
+          .sort((a: Repository, b: Repository) => b.stargazers_count - a.stargazers_count)
+          .slice(0, 6);
+  }
+} catch (error) {
+  console.error("Error fetching GitHub projects:", error);
+}
 
 const technologies = [
 	{ name: "Golang", icon: "go" },
@@ -293,11 +295,29 @@ const technologies = [
 			<div class="divider mb-16"></div>
 
 			<!-- Projects Grid -->
+			<div class="mb-12">
+				<h2 class="text-3xl md:text-4xl font-bold geist-font text-foreground mb-4">
+					My Highlighted <span class="gradient-text">Projects</span>
+				</h2>
+				<p class="text-muted-foreground inter-font text-lg max-w-2xl mx-auto">
+					Check out some of my open-source contributions and personal projects.
+				</p>
+			</div>
+
 			<div
 				id="projects"
 				class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16"
 			>
-				{projects.map((project) => <ProjectCard {...project} />)}
+				{projects.map((project) => (
+                    <ProjectCard
+                        title={project.name}
+                        description={project.description}
+                        url={project.html_url}
+                        stars={project.stargazers_count}
+                        forks={project.forks_count}
+                        language={project.language}
+                    />
+                ))}
 			</div>
 
 			<div class="divider mb-16"></div>
